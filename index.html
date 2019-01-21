@@ -206,7 +206,9 @@ iframe{
 	</style>
 
 	<script type="text/javascript">
-(function(){function C(){
+(function(){
+
+	function C(){
 
 e.globalCompositeOperation="source-over";
 
@@ -220,18 +222,22 @@ x=q-u;y=r-v;u=q;v=r;
 
 	for(var d=0.12*f,l=0.0525*f,m=0.0725*f,t=Math.random,n=Math.abs,o=z;o--;){
 	
-		var h=A[o],i=h.x,j=h.y,a=h.a,b=h.b,c=i-q,k=j-r,g=Math.sqrt(c*c+k*k)||0.001,c=c/g,k=k/g;
+		var h=A[o],i=h.x,j=h.y,a=h.a,b=h.b,c=i-q,k=j-r;
+
+		var g=Math.sqrt(c*c+k*k)||0.001,c=c/g,k=k/g;
 		
 		if(w&&g<m)var s=5*(1-g/m),a=a+(c*s+1-t()),b=b+(k*s+0.05-t());
 		
 		g<d&&(s=0.0014*(1-g/d)*f,a-=c*s,b-=k*s);
 
-		g<l&&(c=2.6E-4*(1-g/l)*f,a+=x*c,b+=y*c);
+		g<l&&(c=0.0014*(1-g/l)*f,a+=x*c,b+=y*c);
 
 		a*=B;b*=B;c=n(a);k=n(b);
 		g=1*(c+k);1.5>c&&(a*=2*t());
 		0.1>k&&(b*=5*t());
-		c=0.25*g;c=Math.max(Math.min(c,3.5),0.7*Math.random());
+		c=0.025*g;
+
+		c=Math.max(Math.min(c,3.5),1*Math.random());
 
 		i+=a;j+=b;
 		i>f?(i=f,a*=-1):0>i&&(i=0,a*=-1);
@@ -245,7 +251,11 @@ x=q-u;y=r-v;u=q;v=r;
 		e.beginPath();
 		e.arc(i,j,c,0,D,!0);e.closePath();
 
-		e.fill()}}
+		e.fill()
+
+			}
+
+		}
 
 		function E(d){
 
@@ -271,13 +281,15 @@ x=q-u;y=r-v;u=q;v=r;
 
 		function H(){
 
-		this.color="rgb("+Math.floor(25)+","+Math.floor(Math.random()*Math.floor(230)+25)+","+Math.floor(25)+")";
+		//this.color="rgb("+Math.floor(25)+","+Math.floor(Math.random()*Math.floor(230)+25)+","+Math.floor(25)+")";
+		this.color="rgb("+Math.floor(25)+","+Math.floor(Math.random()*Math.floor(230)+25)+","+Math.floor(Math.random()*Math.floor(230)+25)+")";
+		//this.color="rgb("+Math.floor(255)+","+Math.floor(255)+","+Math.floor(255)+")";
 
 		this.b=this.a=this.x=this.y=0;this.size=1;
 
 		}
 		
-		var D=2*Math.PI,f=screen.width,p=659,z=600,B=0.95,A=[],o,e,n,m,q,r,x,y,u,v,w;
+		var D=2*Math.PI,f=screen.width,p=659,z=1000,B=0.95,A=[],o,e,n,m,q,r,x,y,u,v,w;
 
 
 		window.onload=function(){
@@ -305,7 +317,7 @@ x=q-u;y=r-v;u=q;v=r;
 			document.onmousedown=F;
 			document.onmouseup=G;
 			document.onmousemove=E;
-			setInterval(C,10);
+			setInterval(C,5);
 
 			}
 
@@ -327,6 +339,13 @@ x=q-u;y=r-v;u=q;v=r;
 	</ul>
 -->
 <script type="text/javascript">
+
+
+document.body.onkeyup = function(e){
+    if(e.keyCode == 32){
+        showhide();
+    }
+}
 function showhide()
  {	
        var div = document.getElementById("mainCanvas");
